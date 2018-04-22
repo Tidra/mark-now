@@ -1,7 +1,6 @@
-title: 微信小程序“任意录”
+[微信小程序“任意录”](http://blog.csdn.net/guodongxiaren)  
 ========================
-tags: 小程序,说明文档,帮助
-grammar_cjkRuby: true
+
 
 # 功能描述
 
