@@ -1,6 +1,6 @@
-[微信小程序“任意录”](http://blog.csdn.net/guodongxiaren)  
+[微信小程序“任意录”](https://github.com/Tidra/netword/blob/master/README.md)  
 ========================
-
+https://github.com/Tidra/netword/blob/master/README.md
 
 # 功能描述
 
