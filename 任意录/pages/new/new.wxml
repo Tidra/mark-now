@@ -1,0 +1,32 @@
+<!--pages/new/new.wxml-->
+<modal class="modal" confirm-text="取消" no-cancel hidden="{{modalHidden}}" bindconfirm="hideModalEvent">
+    <text>新建</text>
+    <view class="share-list">
+        <view class="item" data-index="diary" bindtap="add">
+          <image src="../../img/diary.png" />
+          <view>日记</view>
+        </view>
+        <view class="item" data-index="note" bindtap="add">
+          <image src="../../img/note.png" />
+          <view>备忘/便签</view>
+        </view>
+        <view class="item" data-index="group" bindtap="add">
+          <image src="../../img/group.png" />
+          <view>随记</view>
+        </view>
+    </view>
+    <view class="share-list" style="margin-top: 20rpx">
+        <view class="item" data-index="pay" bindtap="add">
+          <image src="../../img/pay.png" />
+          <view>账单</view>
+        </view>
+        <view class="item" data-index="find" bindtap="add">
+          <image src="../../img/find.png" />
+          <view>寻物启事</view>
+        </view>
+        <view class="item" data-index="other" bindtap="add">
+          <image src="../../img/other.png" />
+          <view>其他</view>
+        </view>
+    </view>
+</modal>

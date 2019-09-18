@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/edit/edit",
+    "pages/index/index",
+    "pages/like/like",
+    "pages/new/new",
+    "pages/read/read",
+    "pages/setting/setting",
+    "pages/about/about",
+    "pages/help/help"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#1E90FF",
+    "navigationBarTitleText": "任意录",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#1296db",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "img/home.png",
+        "selectedIconPath": "img/home_d.png"
+      },
+      {
+        "pagePath": "pages/new/new",
+        "text": "新建",
+        "iconPath": "img/add.png",
+        "selectedIconPath": "img/new.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "社区",
+        "iconPath": "img/open.png",
+        "selectedIconPath": "img/open_d.png"
+      }
+    ]
+  }
+}

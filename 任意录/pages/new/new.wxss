@@ -1,0 +1,25 @@
+/* pages/new/new.wxss */
+.modal text{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.share-list{
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.item{
+  display: flex;
+  flex-direction: column;
+  width: 30.3%;
+  justify-content: center;
+  align-items: center;
+}
+
+.item image{
+  height: 30px;
+  width: 30px;
+}

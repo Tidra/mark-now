@@ -1,0 +1,82 @@
+<!--pages/home/home.wxml-->
+<wxs module="time" src="../../utils/time.wxs"></wxs>
+
+<block wx:if="{{id!='pay'}}">
+  <form bindsubmit="bindFormSubmit">
+    <view class="head">
+      <view>{{time.setType(date)}}</view>
+      <button size="mini" form-type="submit"> 提交 </button>
+    </view>
+    <block wx:if="{{id=='diary'}}">
+     <view>
+      <block wx:if="{{src[0]}}">
+        <image class="top" mode="aspectFill" src="{{src}}"></image>
+      </block>
+      <block wx:else>
+        <image class="forDg" mode="aspectFit" src="../../img/photo.png" bindtap="gotoShow" ></image>
+        <image class="top" mode="aspectFill" src="../../img/diary.jpg"></image>
+      </block>
+      <input class="forDi" name="title" placeholder="标题" value="{{title}}"/>
+      </view>
+    </block>
+    <view class="section">
+    <block wx:if="{{id=='other'}}">
+      <input class="other-t" name="title" placeholder="标题" value="{{title}}"/>
+    </block>
+    <textarea placeholder="{{placeholder}}" name="textarea" bindinput="bindWordLimit" value="{{content}}"/>
+    <text class="wordLimit">已输入字数：{{currentNoteLen|0}}</text>
+
+    <view class= "show-image" wx:if="{{id=='note' || id=='find' || id=='group'}}">
+      <block wx:for="{{src}}" wx:for-item="src" wx:key="this">
+        <image mode="aspectFit" src="{{src}}"></image>
+      </block>
+      <block wx:if="{{objectId==''||objectId==null}}">
+        <image mode="aspectFit" src="../../img/photo.png" bindtap="gotoShow"></image>
+      </block>
+    </view>
+
+    <block wx:if="{{id=='diary' || id=='other' || id=='group'}}">
+    <view class="isOpen">
+      <text>仅自己可见:</text>
+      <switch name="isOpen" checked></switch>
+    </view>
+    </block>
+    <view class="location">
+      <text>获取地址：</text>
+      <image src="../../img/location.png" style="width: 28px; height: 28px;" bindtap="getLocation"></image>
+      <text class="time">{{location}}</text>
+    </view>
+
+    </view>
+  </form>
+</block>
+
+<block wx:else>
+<view class="section">
+  <view class="addPay">
+    <view class="add-t">明细</view>
+    <view class="add-p">支出/收入</view>
+  </view>
+
+  <block wx:for="{{payList}}" wx:for-item="list" wx:key="this">
+    <view class="addPay">
+      <view class="add-t">{{list.title}}</view>
+      <view class="add-p">{{list.pay}}</view>
+      <icon type="cancel" data-id="{{list.Num}}" bindtap="deletePay"></icon>
+    </view>
+  </block>
+
+    <form bindreset="addPay">
+    <view class="addPay">
+      <input class="add-t" data-name="title" bindinput="getPay"></input>
+      <input class="add-p" data-name="pay" bindinput="getPay"></input>
+      <button size="mini" form-type="reset">
+        <image src="../../img/new.png" style="width: 28px; height: 28px;"></image>
+      </button>
+    </view>
+    </form>
+    <view class="inOut">总收支：{{InOut}}</view>
+    <button bindtap="forSave">完成</button>
+
+</view>
+</block>

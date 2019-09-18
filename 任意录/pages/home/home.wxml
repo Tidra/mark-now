@@ -1,0 +1,83 @@
+<!--pages/see/see.wxml-->
+<wxs module="time" src="../../utils/time.wxs"></wxs>
+
+<view class="section">
+  <view class="top">
+    <image src="../../img/calendar.png" style="width: 28px; height: 28px;" bindtap="dateButton"></image>
+    <image src="../../img/search.png" style="width: 30px; height: 30px;" bindtap="hideModalEvent"></image>
+  </view>
+  <block wx:for="{{text}}" wx:for-item="id" wx:key="this">
+  <view class="body" data-index="{{id}}" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd" bindlongtap="delet" bindtap="more">
+  <view class="first-list" style="border-left-color:{{time.setColor(id.type)}};">
+    <view class="list">
+      <block wx:if="{{id.type=='pay'}}">
+        <view class="title">总支出/收入：{{id.pay.inOut}}</view>
+        <view wx:for="{{id.pay.payList}}" wx:key="this">
+        <view>{{item.title}}  {{item.pay}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="other-list">
+          <block wx:if="{{id.url[0]!=null}}">
+            <image class="img" mode="aspectFitf" src="{{id.url[0]}}"></image>
+          </block>
+          <view>
+            <view class="title">{{id.title}}</view>
+            <text>{{id.content}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="location">
+      <block wx:if="{{id.location != ''}}">
+        <image src="../../img/location.png" style="width: 18px; height: 18px;"></image>
+      </block>
+      <text class="time">{{id.location}}</text>
+    </view>
+    <view class="time">
+      <view>类型：{{time.setType(id.type)}}</view>
+      <view>{{time.formatTime(id.createdAt)}}</view>
+    </view>
+  </view>
+  </view>
+  </block>
+</view>
+
+<modal confirm-text="取消" no-cancel hidden="{{modalHidden}}" bindconfirm="hideModalEvent">
+    <view class="modal">
+      <view class="top-search">
+        <icon type="search" size="15"></icon>
+        <input placeholder="搜索...." maxlength="20" confirm-type="search" bindconfirm="search" bindblur="getInput"></input>
+      </view>
+    </view>
+    <view class="share-list">
+        <view class="item" data-index="diary" bindtap="search">
+          <view>日记</view>
+        </view>
+        <view class="item" data-index="note" bindtap="search">
+          <view>备忘/便签</view>
+        </view>
+        <view class="item" data-index="group" bindtap="search">
+          <view>随记</view>
+        </view>
+    </view>
+    <view class="share-list" style="margin-top: 20rpx">
+        <view class="item" data-index="pay" bindtap="search">
+          <view>账单</view>
+        </view>
+        <view class="item" data-index="find" bindtap="search">
+          <view>寻物启事</view>
+        </view>
+        <view class="item" data-index="other" bindtap="search">
+          <view>其他</view>
+        </view>
+    </view>
+</modal>
+
+<block wx:if="{{dateIf}}">
+  <picker class="date" mode="date" value="{{date}}" start="2018-04-01" end="2100-12-01" bindchange="bindDateChange">
+    <view class="picker">
+      当前选择: {{date}}
+    </view>
+  </picker>
+</block>

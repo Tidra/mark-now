@@ -1,0 +1,147 @@
+<!--pages/read/read.wxml-->
+<wxs module="time" src="../../utils/time.wxs"></wxs>
+
+<block wx:if="{{Or=='n'}}">
+<view class="head">
+  <view>{{time.setType(id.type)}}</view>
+  <image src="../../img/more.png" style="width: 30px; height: 30px;" bindtap="choose"></image>
+</view>
+
+<block wx:if="{{hidden}}">
+  <view class="choose">
+    <view class="to" bindtap="edit">编辑</view>
+    <view class="to" bindtap="delet">删除</view>
+  </view>
+</block>
+
+<block wx:if="{{id.type != 'diary' && id.type != 'pay'}}">
+<view class="section">
+  <view>{{id.title}}</view>
+  <view><text>{{id.content}}</text></view>
+  <view class= "show-image">
+    <block wx:for="{{id.url}}" wx:key="this">
+      <image src="{{item}}" data-index="{{id.url}}" data-id="{{item}}" bindtap='previewImg'></image>
+    </block>
+  </view>
+</view>
+</block>
+
+<block wx:if="{{id.type == 'diary'}}">
+<view>
+  <view>
+    <block wx:if="{{id.url.length == null ||id.url.length == 0}}">
+      <image class="top" src="../../img/diary.jpg"></image>
+    </block>
+    <block wx:else>
+      <image class="top" src="{{id.url[0]}}"></image>
+    </block>
+    <view class="forDi">{{id.title}}</view>
+  </view>
+  <view class="section"><text>{{id.content}}</text></view>
+</view>
+</block>
+
+<block wx:if="{{id.type == 'pay'}}">
+<view class="section">
+  <view class="addPay">
+    <view class="add-t">明细</view>
+    <view class="add-p">支出/收入</view>
+  </view>
+  <view class="addPay" wx:for="{{id.pay.payList}}">
+    <view class="add-t">{{item.title}}</view>
+    <view class="add-p">{{item.pay}}</view>
+  </view>
+  <view>总收支：{{id.pay.inOut}}</view>
+</view>
+</block>
+
+<view class="section">
+  <block wx:if="{{id.location != ''}}">
+  <view class="location">
+    <image src="../../img/location.png" style="width: 21px; height: 21px;"></image>
+    <view class="time">{{id.location}}</view>
+  </view>
+  </block>
+  <view>创建于：{{time.formatTime(id.createdAt)}}</view>
+  <view>更新于：{{time.formatTime(id.updatedAt)}}</view>
+</view>
+</block>
+
+<block wx:else>
+<view class="section">
+  <view>
+    <view class="list">
+        <image class="list-img" src="{{id.avatarUrl}}" background-size="cover"></image>
+        <view class="for-item">
+          <view>
+            <view class="user">{{id.user}}</view>
+            <view class="title">{{id.title}}</view>
+            <text>{{id.content}}</text>
+          </view>
+          <view class="img">
+            <block wx:for="{{id.url}}">
+              <image mode="aspectFitf" src="{{item}}" data-index="{{id.url}}" data-id="{{item}}" bindtap='previewImg'></image>
+            </block>
+          </view>
+          <view class="location">
+            <block wx:if="{{id.location != ''}}">
+              <image src="../../img/location.png" style="width: 18px; height: 18px;"></image>
+            </block>
+            <view class="time">
+              <text>{{id.location}}</text>
+              <view>{{time.formatTime(id.createdAt)}}</view>
+            </view>
+          </view>
+          <view class="time">
+            <view>类型：{{time.setType(id.type)}}</view>
+            <view class="location">
+              <view class="other" data-index="{{id}}" bindtap="toCollect">
+                <text>收藏</text>
+                <block wx:if="{{like == 1}}">
+                  <image src="../../img/like_d.png" style="width: 18px; height: 18px;"></image>
+                </block>
+                <block wx:else>
+                  <image src="../../img/like.png" style="width: 18px; height: 18px;"></image>
+                </block>
+              </view>
+              <view class="other" bindtap="callBack">
+                <text>评论</text>
+                <image src="../../img/back.png" style="width: 18px; height: 18px;"></image>
+              </view>
+            </view>
+          </view> 
+        </view>
+    </view>
+
+    <view>
+      <view class="ping">评论</view>
+      <block wx:for="{{com}}">
+      <block wx:if="{{item.content != ''}}">
+        <view class="list">
+          <image class="list-img" src="{{item.avatarUrl}}" background-size="cover"></image>
+          <view class="for-item">
+            <view class="user">{{item.user}}</view>
+            <text>{{item.content}}</text>
+            <view class="time">
+              <view>{{time.formatTime(item.createdAt)}}</view>
+              <block wx:if="{{item.user == username}}">
+                <view class="user" data-index="{{item}}" bindtap="deleUser">删除</view>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+      </block>
+    </view>
+  </view>
+</view>
+</block>
+
+<block wx:if="{{show}}">
+<form bindsubmit="saveCall">
+  <view class="send">
+    <input name="input" focus cursor-spacing='14'></input>
+    <view><button size="mini" form-type="submit">Send</button></view>
+  </view>
+</form>
+</block>

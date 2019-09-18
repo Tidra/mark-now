@@ -1,0 +1,17 @@
+/* pages/setting/setting.wxss */
+.item{
+  padding: 20rpx;
+  border: 1px solid gainsboro;
+}
+.title{
+  color: dodgerblue;
+  font-size: 16px;
+}
+.inder{
+  font-size: 18px;
+  padding: 20rpx 0;
+}
+.tet{
+  color: silver;
+  font-size: 12px;
+}

@@ -1,0 +1,36 @@
+<!--logs.wxml-->
+<wxs module="time" src="../../utils/time.wxs"></wxs>
+
+<view class="section">
+  <block wx:for="{{text}}" wx:for-item="id" wx:key="this">
+  <view class="first-list">
+    <view class="list">
+      <view class="other-list" data-index="{{id}}">
+        <image class="list-img" src="{{id.avatarUrl}}" background-size="cover"></image>
+        <view class="for-item">
+          <view>{{id.user}}</view>
+          <view class="title">{{id.title}}</view>
+          <text>{{id.content}}</text>
+          <view class="img">
+            <block wx:for="{{id.url}}">
+              <image mode="aspectFitf" src="{{item}}"></image>
+            </block>
+          </view>
+          <view class="location">
+            <block wx:if="{{id.location != ''}}">
+              <image src="../../img/location.png" style="width: 18px; height: 18px;"></image>
+            </block>
+            <view class="time">
+              <text>{{id.location}}</text>
+            </view>
+          </view>
+          <view class="time">
+            <view>类型：{{time.setType(id.type)}}</view>
+            <view>{{time.formatTime(id.createdAt)}}</view>
+          </view> 
+        </view>
+      </view>
+    </view>
+  </view>
+  </block>
+</view>

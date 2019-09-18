@@ -1,0 +1,89 @@
+<!--index.wxml-->
+<wxs module="time" src="../../utils/time.wxs"></wxs>
+
+<view class="section">
+  <view class="top">
+    <image src="../../img/list.png" mode="aspectFit" style="width: 29px; height: 29px;" bindtap="ballClickEvent"></image>
+    <view class="top-search">
+      <icon type="search" size="15"></icon>
+      <input placeholder="搜索...." maxlength="20" confirm-type="search" bindconfirm="search"></input>
+    </view>
+    <view>类型：{{time.setType(type)}}</view>
+  </view>
+  <block wx:for="{{text}}" wx:for-item="id" wx:key="this">
+  <view class="first-list">
+    <view class="list">
+      <view class="other-list" data-index="{{id}}">
+        <image class="list-img" src="{{id.avatarUrl}}" background-size="cover"></image>
+        <view class="for-item">
+          <view data-index="{{id}}" bindtap="more">
+            <view class="user">{{id.user}}</view>
+            <view class="title">{{id.title}}</view>
+            <text>{{id.content}}</text>
+          </view>
+          <view class="img">
+            <block wx:for="{{id.url}}" wx:key="this">
+              <image mode="aspectFitf" src="{{item}}" data-index="{{id.url}}" data-id="{{item}}" bindtap='previewImg'></image>
+            </block>
+          </view>
+          <view class="location">
+            <block wx:if="{{id.location != ''}}">
+              <image src="../../img/location.png" style="width: 18px; height: 18px;"></image>
+            </block>
+            <view class="time">
+              <text>{{id.location}}</text>
+            </view>
+          </view>
+          <view class="time">
+            <view>类型：{{time.setType(id.type)}}</view>
+            <view>{{time.formatTime(id.createdAt)}}</view>
+          </view> 
+        </view>
+      </view>
+    </view>
+  </view>
+  </block>
+</view>
+
+<view class="slide-mask" style="display:{{maskDisplay}}" bindtap="slideCloseEvent"></view>
+<view class="slide-menu" style="right: {{slideRight}}px;width: {{slideWidth}}px;height:{{screenHeight}}px;" animation="{{slideAnimation}}">
+  <icon type="cancel" size="30" class="close-btn" color="#FFF" bindtap="slideCloseEvent" />
+  <scroll-view scroll-y="true" style="height:100%;width:100%">
+    <view class="header">
+      <view class="userinfo">
+        <image src="{{user.avatarUrl}}" class="avatar"></image>
+        <text>{{user.nickName}}</text>
+      </view>
+      <view class="toolbar">
+        <view class="item" bindtap="toCollectPage">
+          <image src="../../img/like_d.png"></image>
+          <text>收藏</text>
+        </view>
+        <view class="item" bindtap="toSettingPage">
+          <image src="../../img/setting.png"></image>
+          <text>设置</text>
+        </view>
+      </view>
+    </view>
+    <view class="slide-inner">
+      <block wx:for="{{themeData}}" wx:key="this">
+        <view class="menu-item" data-id="{{item.id}}" bindtap="toThemePage">
+          <text>{{item.title}}</text>
+          <image src="{{item.url}}"></image>
+        </view>
+      </block>
+    </view>
+    <view class="bottem">
+      <navigator url="../about/about">
+        <view class="hover">
+          <icon type="info" size="18"></icon>关于
+        </view>
+      </navigator>
+      <navigator url="../help/help">
+        <view class="hover">
+          <image src="../../img/help.png" style="width: 18px; height: 18px;"></image>帮助
+        </view>
+      </navigator>
+    </view>
+  </scroll-view>
+</view>

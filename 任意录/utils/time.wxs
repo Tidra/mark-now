@@ -1,0 +1,36 @@
+var formatTime = {
+  time: function (time) {
+    var d = getDate(time);
+    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+  }
+}
+
+var setColor = {
+  color: function(e){
+    if(e == 'diary'){return 'red';}
+    else if (e == 'note') { return 'Orange';}
+    else if (e == 'group') { return 'LawnGreen';}
+    else if (e == 'pay') { return 'DeepSkyBlue';}
+    else if (e == 'find') { return 'DarkBlue';}
+    else { return 'Silver';}
+  }
+}
+
+var setType = {
+  type: function (e) {
+    if (e == 'diary') { return '日记'; }
+    else if (e == 'note') { return '备忘/便签'; }
+    else if (e == 'group') { return '随记'; }
+    else if (e == 'pay') { return '账单'; }
+    else if (e == 'find') { return '寻物启事'; }
+    else if (e == 'other') { return '其他'; }
+    else if (e == 'all') { return '全部'; }
+    else { return e;}
+  }
+}
+
+module.exports = {
+  formatTime: formatTime.time,
+  setColor: setColor.color,
+  setType: setType.type
+}

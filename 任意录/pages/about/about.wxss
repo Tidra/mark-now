@@ -1,0 +1,24 @@
+/* pages/about/about.wxss */
+.top{
+  padding: 20rpx;
+  font-size: 15px;
+}
+
+.ido{
+  padding: 20rpx;
+  font-size: 14px;
+  color: gray;
+}
+
+.title{
+  color: azure;
+  padding: 6px;
+  font-weight: bold;
+  background-color: dodgerblue;
+  font-size: 15px;
+}
+
+.bold{
+  font-weight: bold;
+  color: black;
+}

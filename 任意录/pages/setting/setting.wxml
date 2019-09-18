@@ -1,0 +1,15 @@
+<!--pages/setting/setting.wxml-->
+<view class="item">
+  <view class="title">主题</view>
+  <radio-group class="inder" bindchange="radioChange">
+    <label wx:for="{{items}}">
+      <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+    </label>
+  </radio-group>
+  <view class="tet">更改导航栏颜色(待开发)</view>
+</view>
+<view class="item" bindtap="clearData">
+  <view class="title">数据</view>
+  <view class="inder">清除缓存</view>
+  <view class="tet">清楚全部收藏数据</view>
+</view>

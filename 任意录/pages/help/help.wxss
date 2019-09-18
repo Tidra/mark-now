@@ -1,0 +1,11 @@
+/* pages/help/help.wxss */
+.top{
+  padding: 20rpx;
+  font-size: 16px;
+}
+
+.content{
+  padding-bottom: 10rpx;
+  color: gray;
+  border-bottom: 1px solid greenyellow;
+}
